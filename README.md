@@ -19,12 +19,16 @@
 
 ## GitHub Pagesでの公開方法
 
+このリポジトリにはGitHub Actionsのワークフローが設定されています。以下の手順でGitHub Pagesを有効化してください：
+
 1. このリポジトリをGitHubにプッシュします
 2. リポジトリの「Settings」→「Pages」に移動
-3. 「Source」で「Deploy from a branch」を選択
-4. 「Branch」で「main」（または「master」）を選択し、「/ (root)」を選択
-5. 「Save」をクリック
+3. 「Source」で「GitHub Actions」を選択
+4. 「Save」をクリック
+5. `main`ブランチにプッシュすると、自動的にGitHub Pagesにデプロイされます
 6. 数分後に `https://[ユーザー名].github.io/[リポジトリ名]/` でアクセス可能になります
+
+**注意**: 初回デプロイには数分かかる場合があります。デプロイの進行状況は「Actions」タブで確認できます。
 
 ## 使用方法
 

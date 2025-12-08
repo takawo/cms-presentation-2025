@@ -171,7 +171,13 @@ function shuffleArray(array) {
 async function loadCSV() {
     try {
         const response = await fetch('data.csv');
+        if (!response.ok) {
+            throw new Error(`data.csvファイルが見つかりません (ステータス: ${response.status})`);
+        }
         const text = await response.text();
+        if (!text || text.trim().length === 0) {
+            throw new Error('data.csvファイルが空です');
+        }
         const lines = text.trim().split('\n');
 
         // ヘッダーを取得
@@ -185,13 +191,12 @@ async function loadCSV() {
             // CSVのパース（カンマ区切り、引用符内のカンマを考慮）
             const values = parseCSVLine(line);
 
-            if (values.length >= 5) {
+            if (values.length >= 4) {
                 const card = {
                     class: values[0],
                     group: values[1],
                     theme: values[2],
-                    presenters: values[3].split(';'),
-                    materialsUrl: values[4],
+                    materialsUrl: values[3],
                     order: i
                 };
                 cardsData.push(card);
@@ -240,12 +245,24 @@ async function loadCSV() {
             cardsData = shuffleArray([...originalCardsData]);
         }
 
+        // データが読み込まれなかった場合
+        if (cardsData.length === 0) {
+            throw new Error('CSVファイルにデータが含まれていません');
+        }
+
         renderCards();
         updateUI();
     } catch (error) {
         console.error('CSV読み込みエラー:', error);
-        document.getElementById('cards-container').innerHTML =
-            '<p style="text-align: center; color: red; padding: 2rem;">データの読み込みに失敗しました。</p>';
+        const container = document.getElementById('cards-container');
+        if (container) {
+            container.innerHTML =
+                '<div style="text-align: center; color: red; padding: 2rem;">' +
+                '<p style="font-size: 1.2rem; font-weight: bold; margin-bottom: 1rem;">データの読み込みに失敗しました</p>' +
+                '<p style="margin-bottom: 0.5rem;">エラー: ' + error.message + '</p>' +
+                '<p style="font-size: 0.9rem; color: #666;">data.csvファイルが存在することを確認してください。</p>' +
+                '</div>';
+        }
     }
 }
 
@@ -392,11 +409,6 @@ function createScheduleItem(card, order) {
     themeDiv.textContent = card.theme;
     contentDiv.appendChild(themeDiv);
 
-    const presentersDiv = document.createElement('div');
-    presentersDiv.className = 'schedule-presenters';
-    presentersDiv.textContent = card.presenters.join('／');
-    contentDiv.appendChild(presentersDiv);
-
     item.appendChild(contentDiv);
     return item;
 }
@@ -519,12 +531,6 @@ function createCardElement(card, index, showOrder = true) {
     themeDiv.className = 'card-theme';
     themeDiv.textContent = card.theme;
     contentDiv.appendChild(themeDiv);
-
-    // 発表者
-    const presentersDiv = document.createElement('div');
-    presentersDiv.className = 'card-presenters';
-    presentersDiv.textContent = card.presenters.join('／');
-    contentDiv.appendChild(presentersDiv);
 
     cardDiv.appendChild(contentDiv);
 

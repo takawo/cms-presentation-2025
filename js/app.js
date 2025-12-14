@@ -19,7 +19,7 @@ async function loadConfirmedState() {
     try {
         // まずorder.jsonを自動で読み込もうとする
         try {
-            const response = await fetch('order.json');
+            const response = await fetch('data/order.json');
             if (response.ok) {
                 const data = await response.json();
                 isConfirmed = data.isConfirmed || false;
@@ -170,7 +170,7 @@ function shuffleArray(array) {
 // CSVファイルを読み込む
 async function loadCSV() {
     try {
-        const response = await fetch('data.csv');
+        const response = await fetch('data/data.csv');
         if (!response.ok) {
             throw new Error(`data.csvファイルが見つかりません (ステータス: ${response.status})`);
         }

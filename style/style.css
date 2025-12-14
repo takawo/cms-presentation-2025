@@ -10,6 +10,9 @@ body {
     overflow-x: hidden;
     overflow-y: auto;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 body::before {
@@ -62,7 +65,9 @@ body::before {
 
 .container {
     width: 100%;
-    min-height: 100vh;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
     padding: 0;
 }
 
@@ -383,6 +388,7 @@ body::before {
     gap: clamp(0.5rem, 1vh, 1rem);
     padding: 0 clamp(1rem, 2vw, 2rem);
     padding-bottom: 2rem;
+    flex: 1;
 }
 
 /* シャッフルアニメーション */
@@ -901,7 +907,7 @@ body::before {
 .footer {
     width: 100%;
     padding: clamp(1.5rem, 3vh, 2rem) clamp(1rem, 2vw, 2rem);
-    margin-top: clamp(2rem, 4vh, 3rem);
+    margin-top: auto;
     text-align: center;
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(20px);

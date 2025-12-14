@@ -561,14 +561,13 @@ function updateUI() {
         return;
     }
 
-    // データが読み込み完了している場合（確定済み）はボタンを非表示
+    // データが読み込み完了している場合（確定済み）はボタンとステータスメッセージを非表示
     if (isConfirmed && hasOrderJson) {
         if (controlsRow) {
             controlsRow.style.display = 'none';
         }
         if (statusMessage) {
-            statusMessage.textContent = '✓ 発表順が確定されています';
-            statusMessage.classList.add('confirmed');
+            statusMessage.style.display = 'none';
         }
         return;
     }

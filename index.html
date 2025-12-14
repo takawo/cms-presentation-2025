@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style/style.css">
 </head>
 
 <body>
@@ -22,17 +22,24 @@
                     <span class="theme-separator">|</span>
                     <span class="theme-venue">832教室で実施</span>
                 </div>
-                <p class="theme-main">
-                    <span class="theme-label">テーマ：</span>
-                    「女性が活躍できる社会のために私たちができること」
-                </p>
-                <p class="theme-method">
-                    メディア表現学科1年次<strong>「メディア表現発展演習Ⅱ」</strong>では、PBL（プロジェクト型学習）によるグループワークを行い、その成果をプレゼンテーション形式で発表します。
-                </p>
-                <p class="theme-process">
-                    各グループは、自分たちの生活や身近な問題から出発し、調査・企画・表現方法の検討を行い、メディア表現のさまざまな技法を用いてプレゼンテーションを行います。
-                </p>
-                <p class="card-instruction">※各グループのカードをクリックすると発表資料を閲覧できます。</p>
+                <div class="theme-content-wrapper">
+                    <div class="theme-text-content">
+                        <p class="theme-main">
+                            <span class="theme-label">テーマ：</span>
+                            「女性が活躍できる社会のために私たちができること」
+                        </p>
+                        <p class="theme-method">
+                            メディア表現学科1年次<strong>「メディア表現発展演習Ⅱ」</strong>では、PBL（プロジェクト型学習）によるグループワークを行い、その成果をプレゼンテーション形式で発表します。
+                        </p>
+                        <p class="theme-process">
+                            各グループは、自分たちの生活や身近な問題から出発し、調査・企画・表現方法の検討を行い、メディア表現のさまざまな技法を用いてプレゼンテーションを行います。
+                        </p>
+                        <p class="card-instruction">※各グループのカードをクリックすると発表資料を閲覧できます。</p>
+                    </div>
+                    <div class="theme-qr-content">
+                        <img src="images/qrcode.png" alt="QRコード" class="qrcode-image">
+                    </div>
+                </div>
             </div>
             <div class="header-controls">
                 <div class="controls-row">
@@ -48,7 +55,7 @@
             <p class="footer-credit">甲南女子大学 文学部 メディア表現学科 2025年度</p>
         </footer>
     </div>
-    <script src="app.js"></script>
+    <script src="js/app.js"></script>
 </body>
 
 </html>

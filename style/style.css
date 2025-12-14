@@ -139,6 +139,33 @@ body::before {
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15), 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
+.theme-content-wrapper {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+    align-items: start;
+}
+
+.theme-text-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.theme-qr-content {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: clamp(0.5rem, 1vh, 1rem);
+}
+
+.qrcode-image {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    border-radius: clamp(0.5rem, 1vh, 0.75rem);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
 .theme-course-title {
     font-size: clamp(1.5rem, 4vw, 2.2rem);
     font-weight: 700;
@@ -197,26 +224,26 @@ body::before {
 }
 
 .theme-main {
-    font-size: clamp(1.1rem, 2.8vw, 1.5rem);
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
     font-weight: 700;
     color: #041E40;
-    margin: 0 0 clamp(1rem, 2vh, 1.25rem) 0;
+    margin: 0 0 clamp(0.75rem, 1.5vh, 1rem) 0;
     line-height: 1.6;
 }
 
 .theme-label {
-    font-size: clamp(0.95rem, 2.4vw, 1.3rem);
+    font-size: clamp(0.9rem, 2.2vw, 1.2rem);
     font-weight: 500;
     color: #666;
     margin-right: 0.5em;
 }
 
 .theme-method {
-    font-size: clamp(0.9rem, 2.2vw, 1.1rem);
+    font-size: clamp(0.85rem, 2vw, 1rem);
     font-weight: 400;
     color: #555;
     margin: 0 0 clamp(0.5rem, 1vh, 0.75rem) 0;
-    line-height: 1.8;
+    line-height: 1.7;
     padding-left: 1em;
     position: relative;
 }
@@ -234,11 +261,11 @@ body::before {
 }
 
 .theme-process {
-    font-size: clamp(0.9rem, 2.2vw, 1.1rem);
+    font-size: clamp(0.85rem, 2vw, 1rem);
     font-weight: 400;
     color: #555;
     margin: 0 0 clamp(0.5rem, 1vh, 0.75rem) 0;
-    line-height: 1.6;
+    line-height: 1.7;
     padding-left: 1em;
     position: relative;
 }
@@ -251,7 +278,7 @@ body::before {
 }
 
 .card-instruction {
-    font-size: clamp(0.8rem, 1.8vw, 0.95rem);
+    font-size: clamp(0.75rem, 1.6vw, 0.9rem);
     font-weight: 400;
     color: #666;
     margin: 0;
@@ -618,6 +645,20 @@ body::before {
     .theme-description {
         margin: clamp(0.75rem, 1.5vh, 1rem) auto clamp(0.5rem, 1vh, 0.75rem);
         padding: clamp(0.75rem, 1.5vh, 1rem) clamp(1rem, 2vw, 1.5rem);
+    }
+
+    .theme-content-wrapper {
+        grid-template-columns: 1fr;
+        gap: clamp(1rem, 2vh, 1.5rem);
+    }
+
+    .theme-qr-content {
+        justify-content: center;
+        padding-top: 0;
+    }
+
+    .qrcode-image {
+        max-width: 150px;
     }
 
     .theme-course-title {

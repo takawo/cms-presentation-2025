@@ -909,7 +909,7 @@ body::before {
     padding: clamp(1.5rem, 3vh, 2rem) clamp(1rem, 2vw, 2rem);
     margin-top: auto;
     text-align: center;
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.25);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-top: 1px solid rgba(4, 30, 64, 0.1);

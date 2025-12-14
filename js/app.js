@@ -551,6 +551,9 @@ function updateUI() {
             confirmBtn.disabled = false;
             confirmBtn.classList.remove('confirmed');
         }
+        if (controlsRow) {
+            controlsRow.style.display = '';
+        }
         if (statusMessage) {
             statusMessage.textContent = '※ CSVの順序で表示中（order.jsonがありません）';
             statusMessage.classList.remove('confirmed');
@@ -558,8 +561,21 @@ function updateUI() {
         return;
     }
 
-    // order.jsonがある場合は通常通り表示
+    // データが読み込み完了している場合（確定済み）はボタンを非表示
+    if (isConfirmed && hasOrderJson) {
+        if (controlsRow) {
+            controlsRow.style.display = 'none';
+        }
+        if (statusMessage) {
+            statusMessage.textContent = '✓ 発表順が確定されています';
+            statusMessage.classList.add('confirmed');
+        }
+        return;
+    }
+
+    // order.jsonがあるが未確定の場合は通常通り表示
     if (confirmBtn) confirmBtn.style.display = '';
+    if (controlsRow) controlsRow.style.display = '';
 
     if (isConfirmed) {
         confirmBtn.textContent = '発表順確定済み';

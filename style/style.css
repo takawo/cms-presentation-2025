@@ -659,12 +659,7 @@ body::before {
     }
 
     .theme-qr-content {
-        justify-content: center;
-        padding-top: 0;
-    }
-
-    .qrcode-image {
-        max-width: 150px;
+        display: none;
     }
 
     .theme-course-title {

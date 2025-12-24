@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>メディア表現入門演習Ⅱ　（高尾・八尾・山下クラス）発表</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="theme-description">
+                <h1 class="theme-course-title">メディア表現入門演習Ⅱ</h1>
+                <div class="theme-course-info">
+                    <span class="theme-classes">高尾・八尾・山下クラス</span>
+                    <span class="theme-separator">|</span>
+                    <span class="theme-venue">832教室で実施</span>
+                </div>
+                <div class="theme-content-wrapper">
+                    <div class="theme-text-content">
+                        <p class="theme-main">
+                            <span class="theme-label">テーマ：</span>
+                            「女性が活躍できる社会のために私たちができること」
+                        </p>
+                        <p class="theme-method">
+                            メディア表現学科1年次<strong>「メディア表現発展演習Ⅱ」</strong>では、PBL（プロジェクト型学習）によるグループワークを行い、その成果をプレゼンテーション形式で発表します。
+                        </p>
+                        <p class="theme-process">
+                            各グループは、自分たちの生活や身近な問題から出発し、調査・企画・表現方法の検討を行い、メディア表現のさまざまな技法を用いてプレゼンテーションを行います。
+                        </p>
+                        <p class="card-instruction">※各グループのカードをクリックすると発表資料を閲覧できます。</p>
+                        <p class="card-instruction">※発表資料は個人情報を削除して公開しています。</p>
+                    </div>
+                    <div class="theme-qr-content">
+                        <img src="images/qrcode.png" alt="QRコード" class="qrcode-image">
+                    </div>
+                </div>
+                <div class="theme-youtube-container">
+                    <iframe src="https://www.youtube.com/embed/mpX3mbleGeY" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen class="theme-youtube-iframe">
+                    </iframe>
+                </div>
+            </div>
+            <div class="header-controls">
+                <div class="controls-row">
+                    <button id="confirm-btn" class="confirm-btn">発表順を確定</button>
+                    <label for="load-json-input" class="load-json-btn">JSONファイルを読み込む</label>
+                    <input type="file" id="load-json-input" accept=".json" style="display: none;">
+                </div>
+                <div id="status-message" class="status-message"></div>
+            </div>
+        </header>
+        <div id="cards-container" class="cards-container"></div>
+        <footer class="footer">
+            <p class="footer-credit">甲南女子大学 文学部 メディア表現学科 2025年度</p>
+        </footer>
+    </div>
+    <script src="js/app.js"></script>
+</body>
+
+</html>

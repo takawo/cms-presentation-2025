@@ -5,23 +5,380 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
-    <title>メディア表現入門演習Ⅱ　（高尾・八尾・山下クラス）発表</title>
+    <title>メディア表現入門演習Ⅱ　（5クラス）発表一覧</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style/style.css">
+    <style>
+        .sticky-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: linear-gradient(
+                135deg,
+                rgba(61, 64, 112, 0.80) 0%,
+                rgba(72, 149, 217, 0.80) 20%,
+                rgba(139, 92, 246, 0.80) 40%,
+                rgba(230, 58, 70, 0.80) 60%,
+                rgba(242, 134, 39, 0.80) 80%,
+                rgba(72, 149, 217, 0.80) 100%
+            );
+            background-size: 400% 400%;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            padding: clamp(0.75rem, 1.5vh, 1rem) clamp(1rem, 2vw, 2rem);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            animation: gradientShift 15s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .sticky-header.show {
+            display: flex;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .sticky-header-content {
+            max-width: 1200px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: clamp(1rem, 2vw, 1.5rem);
+        }
+
+        .sticky-header-title {
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            font-weight: 700;
+            color: white;
+            margin: 0;
+        }
+
+        .sticky-header-theme {
+            font-size: clamp(0.85rem, 2vw, 1.1rem);
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.9);
+            margin: 0;
+            flex: 1;
+            text-align: right;
+        }
+
+        @media (max-width: 768px) {
+            .sticky-header-content {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+
+            .sticky-header-theme {
+                text-align: left;
+                font-size: clamp(0.8rem, 1.8vw, 1rem);
+            }
+        }
+
+        .theme-description {
+            background: linear-gradient(
+                135deg,
+                rgba(61, 64, 112, 0.80) 0%,
+                rgba(72, 149, 217, 0.80) 20%,
+                rgba(139, 92, 246, 0.80) 40%,
+                rgba(230, 58, 70, 0.80) 60%,
+                rgba(242, 134, 39, 0.80) 80%,
+                rgba(72, 149, 217, 0.80) 100%
+            );
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding-bottom: calc(clamp(2rem, 4vh, 2.5rem) + 15px);
+        }
+
+        .theme-description .theme-course-title,
+        .theme-description .theme-main,
+        .theme-description .theme-method,
+        .theme-description .theme-process,
+        .theme-description .card-instruction {
+            color: white;
+        }
+
+        .theme-description .theme-label {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .theme-description .theme-method strong,
+        .theme-description .theme-process strong {
+            color: white;
+        }
+
+        .theme-description .theme-method::before,
+        .theme-description .theme-process::before {
+            color: white;
+        }
+
+        .theme-content-wrapper {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .groups-container {
+            width: 100%;
+            max-width: 1200px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: clamp(1rem, 2vw, 1.5rem);
+        }
+
+        .group-item {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 2px solid #041E40;
+            border-radius: clamp(0.5rem, 1vh, 0.75rem);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15), 0 2px 8px rgba(0, 0, 0, 0.1);
+            padding: clamp(1.5rem, 3vh, 2rem);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            min-height: 200px;
+        }
+
+        .group-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.2), 0 4px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .group-header {
+            margin-top: clamp(0.75rem, 1.5vh, 1rem);
+            margin-bottom: clamp(0.5rem, 1vh, 0.75rem);
+        }
+
+        .group-label {
+            display: inline-block;
+            padding: clamp(0.25rem, 0.5vh, 0.4rem) clamp(0.6rem, 1.2vw, 0.9rem);
+            border-radius: clamp(0.25rem, 0.5vh, 0.4rem);
+            font-size: clamp(0.75rem, 1.8vw, 0.9rem);
+            font-weight: 500;
+            background: rgba(0, 0, 0, 0.1);
+            color: #666;
+            letter-spacing: 0.05em;
+        }
+
+        .group-class-label {
+            display: inline-block;
+            padding: clamp(0.25rem, 0.5vh, 0.4rem) clamp(0.6rem, 1.2vw, 0.9rem);
+            border-radius: clamp(0.25rem, 0.5vh, 0.4rem);
+            font-size: clamp(0.75rem, 1.8vw, 0.9rem);
+            font-weight: 500;
+            color: white;
+            letter-spacing: 0.05em;
+            margin-right: clamp(0.5rem, 1vw, 0.75rem);
+        }
+
+        /* クラスごとのラベル色 */
+        .group-item.class-mizuno .group-class-label {
+            background: rgba(72, 149, 217, 0.9);
+        }
+
+        .group-item.class-iguchi .group-class-label {
+            background: rgba(34, 197, 94, 0.9);
+        }
+
+        .group-item.class-takawo .group-class-label {
+            background: rgba(139, 92, 246, 0.9);
+        }
+
+        .group-item.class-yao .group-class-label {
+            background: rgba(230, 58, 70, 0.9);
+        }
+
+        .group-item.class-yamashita .group-class-label {
+            background: rgba(242, 134, 39, 0.9);
+        }
+
+        .group-theme {
+            font-size: clamp(1.1rem, 2.8vh, 1.5rem);
+            font-weight: 700;
+            color: #041E40;
+            line-height: 1.5;
+            margin-bottom: auto;
+            flex-grow: 1;
+            margin-top: 0;
+        }
+
+        .group-materials-button {
+            padding: clamp(0.75rem, 1.5vh, 1rem) clamp(1.5rem, 3vw, 2rem);
+            font-size: clamp(0.9rem, 2.2vw, 1.1rem);
+            font-weight: 700;
+            font-family: 'Noto Sans JP', sans-serif;
+            color: white;
+            background: #3d4070;
+            border: 2px solid #3d4070;
+            border-radius: clamp(0.4rem, 0.8vh, 0.6rem);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 0.05em;
+            box-shadow: 0 2px 4px rgba(61, 64, 112, 0.2);
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            width: 100%;
+            margin-top: clamp(1rem, 2vh, 1.5rem);
+        }
+
+        .group-materials-button:hover {
+            background: #5a5d8f;
+            border-color: #5a5d8f;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(61, 64, 112, 0.3);
+        }
+
+        .group-materials-button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(4, 30, 64, 0.2);
+        }
+
+        .group-youtube-container {
+            width: 100%;
+            margin-top: clamp(1rem, 2vh, 1.5rem);
+            margin-bottom: clamp(1rem, 2vh, 1.5rem);
+            position: relative;
+            padding-bottom: 56.25%;
+            /* 16:9アスペクト比 */
+            height: 0;
+            overflow: hidden;
+            border-radius: clamp(0.5rem, 1vh, 0.75rem);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .group-youtube-iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .group-image-container {
+            width: 100%;
+            margin-top: clamp(1rem, 2vh, 1.5rem);
+            margin-bottom: clamp(1rem, 2vh, 1.5rem);
+            border-radius: clamp(0.5rem, 1vh, 0.75rem);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+        }
+
+        .group-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+            transition: opacity 0.1s ease;
+            cursor: pointer;
+        }
+
+        .group-image-container {
+            position: relative;
+        }
+
+        .group-image-container:hover .group-image {
+            opacity: 0.9;
+        }
+
+        /* クラスごとの色 */
+        .group-item.class-mizuno {
+            box-shadow: 0 8px 32px rgba(72, 149, 217, 0.2), 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .group-item.class-mizuno:hover {
+            box-shadow: 0 12px 48px rgba(72, 149, 217, 0.3), 0 4px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .group-item.class-iguchi {
+            box-shadow: 0 8px 32px rgba(34, 197, 94, 0.2), 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .group-item.class-iguchi:hover {
+            box-shadow: 0 12px 48px rgba(34, 197, 94, 0.3), 0 4px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .group-item.class-takawo {
+            box-shadow: 0 8px 32px rgba(139, 92, 246, 0.2), 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .group-item.class-takawo:hover {
+            box-shadow: 0 12px 48px rgba(139, 92, 246, 0.3), 0 4px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .group-item.class-yao {
+            box-shadow: 0 8px 32px rgba(230, 58, 70, 0.2), 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .group-item.class-yao:hover {
+            box-shadow: 0 12px 48px rgba(230, 58, 70, 0.3), 0 4px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .group-item.class-yamashita {
+            box-shadow: 0 8px 32px rgba(242, 134, 39, 0.2), 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .group-item.class-yamashita:hover {
+            box-shadow: 0 12px 48px rgba(242, 134, 39, 0.3), 0 4px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .list-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0 clamp(1rem, 2vw, 2rem);
+            padding-bottom: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .groups-container {
+                grid-template-columns: 1fr;
+            }
+
+            .group-item {
+                padding: clamp(1rem, 2vh, 1.5rem);
+            }
+
+            .group-theme {
+                font-size: clamp(0.95rem, 2.2vw, 1.2rem);
+            }
+        }
+    </style>
 </head>
 
 <body>
+    <div class="sticky-header" id="sticky-header">
+        <div class="sticky-header-content">
+            <h1 class="sticky-header-title">メディア表現入門演習Ⅱ</h1>
+            <p class="sticky-header-theme">「女性が活躍できる社会のために私たちができること」</p>
+        </div>
+    </div>
     <div class="container">
         <header class="header">
             <div class="theme-description">
                 <h1 class="theme-course-title">メディア表現入門演習Ⅱ</h1>
-                <div class="theme-course-info">
-                    <span class="theme-classes">高尾・八尾・山下クラス</span>
-                    <span class="theme-separator">|</span>
-                    <span class="theme-venue">832教室で実施</span>
-                </div>
                 <div class="theme-content-wrapper">
                     <div class="theme-text-content">
                         <p class="theme-main">
@@ -34,35 +391,408 @@
                         <p class="theme-process">
                             各グループは、自分たちの生活や身近な問題から出発し、調査・企画・表現方法の検討を行い、メディア表現のさまざまな技法を用いてプレゼンテーションを行います。
                         </p>
-                        <p class="card-instruction">※各グループのカードをクリックすると発表資料を閲覧できます。</p>
-                        <p class="card-instruction">※発表資料は個人情報を削除して公開しています。</p>
-                    </div>
-                    <div class="theme-qr-content">
-                        <img src="images/qrcode.png" alt="QRコード" class="qrcode-image">
+                        <p class="card-instruction">※各グループの発表タイトルと発表資料へのリンクを掲載しています。</p>
                     </div>
                 </div>
-                <div class="theme-youtube-container">
-                    <iframe src="https://www.youtube.com/embed/mpX3mbleGeY" frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen class="theme-youtube-iframe">
-                    </iframe>
-                </div>
-            </div>
-            <div class="header-controls">
-                <div class="controls-row">
-                    <button id="confirm-btn" class="confirm-btn">発表順を確定</button>
-                    <label for="load-json-input" class="load-json-btn">JSONファイルを読み込む</label>
-                    <input type="file" id="load-json-input" accept=".json" style="display: none;">
-                </div>
-                <div id="status-message" class="status-message"></div>
             </div>
         </header>
-        <div id="cards-container" class="cards-container"></div>
+        <div class="list-container" id="list-container">
+            <!-- JavaScriptで動的に生成されます -->
+        </div>
         <footer class="footer">
             <p class="footer-credit">甲南女子大学 文学部 メディア表現学科 2025年度</p>
         </footer>
     </div>
-    <script src="js/app.js"></script>
+    <script>
+        // 配列をシャッフル（Fisher-Yatesアルゴリズム）
+        function shuffleArray(array) {
+            const shuffled = [...array];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
+
+        // CSV行をパース（引用符内のカンマを考慮）
+        function parseCSVLine(line) {
+            const values = [];
+            let current = '';
+            let inQuotes = false;
+
+            for (let i = 0; i < line.length; i++) {
+                const char = line[i];
+
+                if (char === '"') {
+                    inQuotes = !inQuotes;
+                } else if (char === ',' && !inQuotes) {
+                    values.push(current.trim());
+                    current = '';
+                } else {
+                    current += char;
+                }
+            }
+
+            if (current.trim()) {
+                values.push(current.trim());
+            }
+
+            return values;
+        }
+
+        // URLがYouTubeかどうかを判定
+        function isYouTubeUrl(url) {
+            if (!url || url.trim() === '') {
+                return false;
+            }
+            return url.includes('youtube.com') || url.includes('youtu.be');
+        }
+
+        // URLが画像かどうかを判定
+        function isImageUrl(url) {
+            if (!url || url.trim() === '') {
+                return false;
+            }
+            const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg'];
+            const lowerUrl = url.toLowerCase();
+            // 画像拡張子で終わる場合
+            if (imageExtensions.some(ext => lowerUrl.endsWith(ext) || lowerUrl.includes(ext))) {
+                return true;
+            }
+            // images/で始まる相対パスの場合
+            if (lowerUrl.startsWith('images/')) {
+                return true;
+            }
+            // imageやimgを含む場合
+            if (lowerUrl.includes('image') || lowerUrl.includes('img')) {
+                return true;
+            }
+            return false;
+        }
+
+        // YouTubeのURLを埋め込み用に変換
+        function convertToEmbedUrl(youtubeUrl) {
+            if (!youtubeUrl || youtubeUrl.trim() === '') {
+                return '';
+            }
+
+            // youtu.be/xxx 形式を変換
+            if (youtubeUrl.includes('youtu.be/')) {
+                const videoId = youtubeUrl.split('youtu.be/')[1].split('?')[0].split('&')[0];
+                return `https://www.youtube.com/embed/${videoId}`;
+            }
+
+            // youtube.com/watch?v=xxx 形式を変換
+            if (youtubeUrl.includes('youtube.com/watch?v=')) {
+                const videoId = youtubeUrl.split('v=')[1].split('&')[0];
+                return `https://www.youtube.com/embed/${videoId}`;
+            }
+
+            // 既に埋め込み形式の場合はそのまま
+            if (youtubeUrl.includes('youtube.com/embed/')) {
+                return youtubeUrl;
+            }
+
+            return youtubeUrl;
+        }
+
+        // 使用するURLを決定（PDFのURLを優先）
+        function getMaterialsUrl(card) {
+            // PDFのURLが存在する場合はPDFを優先
+            if (card.pdfUrl && card.pdfUrl.trim() !== '') {
+                return card.pdfUrl;
+            }
+            // PDFのURLがない場合のみmaterials_urlを使用
+            return card.materialsUrl || '';
+        }
+
+        // グループ名を正規化（1班→グループA、2班→グループB、3班→グループC）
+        function normalizeGroupName(group) {
+            if (group === '1班') return 'グループA';
+            if (group === '2班') return 'グループB';
+            if (group === '3班') return 'グループC';
+            return group;
+        }
+
+        // クラス名からCSSクラス名を取得
+        function getClassCssClass(className) {
+            const classMap = {
+                '高尾クラス': 'takawo',
+                '八尾クラス': 'yao',
+                '山下クラス': 'yamashita',
+                '水野クラス': 'mizuno',
+                '井口クラス': 'iguchi'
+            };
+            return classMap[className] || '';
+        }
+
+        // グループカードを作成
+        function createGroupCard(group) {
+            const card = document.createElement('div');
+            const classCssClass = getClassCssClass(group.class);
+            card.className = `group-item class-${classCssClass}`;
+
+            // 発表タイトルを最初に配置
+            const theme = document.createElement('div');
+            theme.className = 'group-theme';
+            theme.textContent = group.theme || '発表タイトル未設定';
+            card.appendChild(theme);
+
+            // クラス名とグループ名をその下に配置
+            const header = document.createElement('div');
+            header.className = 'group-header';
+
+            // クラス名ラベル
+            const classLabel = document.createElement('span');
+            classLabel.className = 'group-class-label';
+            classLabel.textContent = group.class;
+            header.appendChild(classLabel);
+
+            // グループ名ラベル
+            const groupLabel = document.createElement('span');
+            groupLabel.className = 'group-label';
+            groupLabel.textContent = normalizeGroupName(group.group);
+            header.appendChild(groupLabel);
+
+            card.appendChild(header);
+
+            // プレゼンテーション表示
+            const presentationUrl = group.presentationUrl || '';
+            const placeholderUrl = 'https://placehold.jp/60/3d4070/ffffff/1280x720.png?text=%E3%82%B9%E3%83%A9%E3%82%A4%E3%83%89%E3%81%BE%E3%81%9F%E3%81%AF%E7%99%BA%E8%A1%A8%E9%A2%A8%E6%99%AF';
+
+            if (presentationUrl && presentationUrl.trim() !== '') {
+                // YouTubeのURLの場合
+                if (isYouTubeUrl(presentationUrl)) {
+                    const youtubeEmbedUrl = convertToEmbedUrl(presentationUrl);
+                    if (youtubeEmbedUrl) {
+                        const youtubeContainer = document.createElement('div');
+                        youtubeContainer.className = 'group-youtube-container';
+
+                        const youtubeIframe = document.createElement('iframe');
+                        youtubeIframe.src = youtubeEmbedUrl;
+                        youtubeIframe.frameBorder = '0';
+                        youtubeIframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+                        youtubeIframe.allowFullscreen = true;
+                        youtubeIframe.className = 'group-youtube-iframe';
+
+                        youtubeContainer.appendChild(youtubeIframe);
+                        card.appendChild(youtubeContainer);
+                    }
+                }
+                // 画像のURLの場合
+                else if (isImageUrl(presentationUrl)) {
+                    const imageContainer = document.createElement('div');
+                    imageContainer.className = 'group-image-container';
+
+                    // 複数の画像パスをセミコロン区切りで取得（シーク機能用）
+                    const imagePaths = presentationUrl.split(';').map(path => path.trim()).filter(path => path);
+                    
+                    const image = document.createElement('img');
+                    image.src = imagePaths[0] || presentationUrl;
+                    image.alt = group.theme || '発表資料';
+                    image.className = 'group-image';
+
+                    // 複数の画像がある場合、マウス位置に応じて画像を切り替える
+                    if (imagePaths.length > 1) {
+                        imageContainer.addEventListener('mousemove', (e) => {
+                            const rect = imageContainer.getBoundingClientRect();
+                            const x = e.clientX - rect.left;
+                            const percentage = x / rect.width;
+                            const imageIndex = Math.floor(percentage * imagePaths.length);
+                            const clampedIndex = Math.min(Math.max(imageIndex, 0), imagePaths.length - 1);
+                            image.src = imagePaths[clampedIndex];
+                        });
+
+                        imageContainer.addEventListener('mouseleave', () => {
+                            image.src = imagePaths[0];
+                        });
+                    }
+
+                    // 発表資料のURLがある場合は画像にリンクを追加
+                    const materialsUrl = getMaterialsUrl(group);
+                    if (materialsUrl && materialsUrl.trim() !== '') {
+                        const imageLink = document.createElement('a');
+                        imageLink.setAttribute('href', materialsUrl);
+                        imageLink.setAttribute('target', '_blank');
+                        imageLink.style.display = 'block';
+                        imageLink.style.width = '100%';
+                        imageLink.appendChild(image);
+                        imageContainer.appendChild(imageLink);
+                    } else {
+                        imageContainer.appendChild(image);
+                    }
+
+                    card.appendChild(imageContainer);
+                }
+            } else {
+                // プレゼンテーションURLがない場合はプレースホルダー画像を表示
+                const imageContainer = document.createElement('div');
+                imageContainer.className = 'group-image-container';
+
+                const image = document.createElement('img');
+                image.src = placeholderUrl;
+                image.alt = 'スライドまたは発表風景';
+                image.className = 'group-image';
+
+                // 発表資料のURLがある場合は画像にリンクを追加
+                const materialsUrl = getMaterialsUrl(group);
+                if (materialsUrl && materialsUrl.trim() !== '') {
+                    const imageLink = document.createElement('a');
+                    imageLink.setAttribute('href', materialsUrl);
+                    imageLink.setAttribute('target', '_blank');
+                    imageLink.style.display = 'block';
+                    imageLink.style.width = '100%';
+                    imageLink.appendChild(image);
+                    imageContainer.appendChild(imageLink);
+                } else {
+                    imageContainer.appendChild(image);
+                }
+
+                card.appendChild(imageContainer);
+            }
+
+            // 発表資料のURLがある場合のみボタンを表示
+            const materialsUrl = getMaterialsUrl(group);
+            if (materialsUrl && materialsUrl.trim() !== '') {
+                const button = document.createElement('a');
+                button.className = 'group-materials-button';
+                button.setAttribute('href', materialsUrl);
+                button.setAttribute('target', '_blank');
+                button.textContent = '発表資料';
+                card.appendChild(button);
+            }
+
+            return card;
+        }
+
+
+        // CSVファイルを読み込む
+        async function loadCSV() {
+            try {
+                const response = await fetch('data/data_5classes.csv');
+                if (!response.ok) {
+                    throw new Error(`data_5classes.csvファイルが見つかりません (ステータス: ${response.status})`);
+                }
+                const text = await response.text();
+                if (!text || text.trim().length === 0) {
+                    throw new Error('data_5classes.csvファイルが空です');
+                }
+                const lines = text.trim().split('\n');
+
+                // ヘッダーを取得
+                const headers = lines[0].split(',');
+
+                // データをパース
+                const cardsData = [];
+                for (let i = 1; i < lines.length; i++) {
+                    const line = lines[i];
+                    if (!line.trim()) continue;
+
+                    const values = parseCSVLine(line);
+
+                    if (values.length >= 4) {
+                        const card = {
+                            class: values[0],
+                            group: values[1],
+                            theme: values[2],
+                            presentationUrl: values[3] || '',
+                            materialsUrl: values[4] || '',
+                            pdfUrl: values[5] || ''
+                        };
+                        cardsData.push(card);
+                    }
+                }
+
+                const container = document.getElementById('list-container');
+
+                // クラスごとにグループを分類
+                const classesData = {};
+                cardsData.forEach(card => {
+                    if (!classesData[card.class]) {
+                        classesData[card.class] = [];
+                    }
+                    classesData[card.class].push(card);
+                });
+
+                // 各クラス内のグループをA、B、Cの順に並べる
+                const classOrder = ['水野クラス', '井口クラス', '高尾クラス', '八尾クラス', '山下クラス'];
+                const groupOrder = ['グループA', 'グループB', 'グループC'];
+                
+                classOrder.forEach(className => {
+                    if (classesData[className]) {
+                        const sortedGroups = groupOrder.map(groupName => {
+                            return classesData[className].find(g => normalizeGroupName(g.group) === groupName);
+                        }).filter(g => g !== undefined);
+                        classesData[className] = sortedGroups;
+                    }
+                });
+
+                // 5クラスの順序をシャッフル
+                const shuffledClasses = shuffleArray(classOrder);
+
+                // グループコンテナを作成
+                const groupsContainer = document.createElement('div');
+                groupsContainer.className = 'groups-container';
+
+                // シャッフルされたクラス順序で15グループを表示
+                shuffledClasses.forEach(className => {
+                    if (classesData[className]) {
+                        classesData[className].forEach(group => {
+                            const card = createGroupCard(group);
+                            groupsContainer.appendChild(card);
+                        });
+                    }
+                });
+
+                container.appendChild(groupsContainer);
+
+            } catch (error) {
+                console.error('CSV読み込みエラー:', error);
+                const container = document.getElementById('list-container');
+                if (container) {
+                    container.innerHTML =
+                        '<div style="text-align: center; color: red; padding: 2rem;">' +
+                        '<p style="font-size: 1.2rem; font-weight: bold; margin-bottom: 1rem;">データの読み込みに失敗しました</p>' +
+                        '<p style="margin-bottom: 0.5rem;">エラー: ' + error.message + '</p>' +
+                        '<p style="font-size: 0.9rem; color: #666;">data_5classes.csvファイルが存在することを確認してください。</p>' +
+                        '</div>';
+                }
+            }
+        }
+
+        // スクロール時にコンパクトなstickyヘッダーを表示
+        let isSticky = false;
+        let ticking = false;
+
+        function handleScroll() {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    const stickyHeader = document.getElementById('sticky-header');
+                    const scrollDownThreshold = 200; // 下にスクロールして200px超えたらsticky
+                    const scrollUpThreshold = 150; // 上にスクロールして150px以下になったら解除（ヒステリシス）
+
+                    if (!isSticky && window.scrollY > scrollDownThreshold) {
+                        stickyHeader.classList.add('show');
+                        isSticky = true;
+                    } else if (isSticky && window.scrollY < scrollUpThreshold) {
+                        stickyHeader.classList.remove('show');
+                        isSticky = false;
+                    }
+
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }
+
+        // ページ読み込み時にCSVを読み込む
+        document.addEventListener('DOMContentLoaded', () => {
+            loadCSV();
+            
+            // スクロールイベントリスナーを追加
+            window.addEventListener('scroll', handleScroll);
+        });
+    </script>
 </body>
 
 </html>

@@ -616,6 +616,15 @@
                         imageLink.setAttribute('target', '_blank');
                         imageLink.style.display = 'block';
                         imageLink.style.width = '100%';
+                        // 複数の画像がある場合、リンクのpointer-eventsを無効化してマウスイベントを画像コンテナで処理
+                        if (imagePaths.length > 1) {
+                            imageLink.style.pointerEvents = 'none';
+                            // 画像コンテナをクリックしたときにリンクを開く
+                            imageContainer.style.cursor = 'pointer';
+                            imageContainer.addEventListener('click', () => {
+                                window.open(materialsUrl, '_blank');
+                            });
+                        }
                         imageLink.appendChild(image);
                         imageContainer.appendChild(imageLink);
                     } else {

@@ -388,10 +388,73 @@ function handleScroll() {
     }
 }
 
+// 背景画像をランダムに切り替える機能（ディゾルブ効果付き）
+let backgroundImageInterval = null;
+let currentImageIndex = -1;
+let shuffledImages = [];
+let activeLayer = 1; // 現在アクティブなレイヤー（1または2）
+
+function initBackgroundImages() {
+    // presentation_imagesフォルダ内の画像ファイルリストを生成（1から49まで）
+    const imagePaths = [];
+    for (let i = 1; i <= 49; i++) {
+        imagePaths.push(`images/presentation_images/presentation_img_${i}.jpeg`);
+    }
+
+    // 画像をシャッフル
+    shuffledImages = shuffleArray(imagePaths);
+
+    // 最初の画像をレイヤー1に設定
+    if (shuffledImages.length > 0) {
+        currentImageIndex = 0;
+        const layer1 = document.getElementById('bg-image-layer-1');
+        if (layer1) {
+            layer1.style.backgroundImage = `url('${shuffledImages[0]}')`;
+            layer1.style.opacity = '0.3';
+        }
+    }
+
+    // 5秒ごとに画像を切り替え（ディゾルブ効果）
+    backgroundImageInterval = setInterval(() => {
+        if (shuffledImages.length > 0) {
+            currentImageIndex = (currentImageIndex + 1) % shuffledImages.length;
+            switchBackgroundImage(shuffledImages[currentImageIndex]);
+        }
+    }, 5000);
+
+    return shuffledImages;
+}
+
+function switchBackgroundImage(imagePath) {
+    const layer1 = document.getElementById('bg-image-layer-1');
+    const layer2 = document.getElementById('bg-image-layer-2');
+
+    if (!layer1 || !layer2) return;
+
+    if (activeLayer === 1) {
+        // レイヤー2に新しい画像を設定してフェードイン
+        layer2.style.backgroundImage = `url('${imagePath}')`;
+        layer2.style.opacity = '0.3';
+        // レイヤー1をフェードアウト
+        layer1.style.opacity = '0';
+        activeLayer = 2;
+    } else {
+        // レイヤー1に新しい画像を設定してフェードイン
+        layer1.style.backgroundImage = `url('${imagePath}')`;
+        layer1.style.opacity = '0.3';
+        // レイヤー2をフェードアウト
+        layer2.style.opacity = '0';
+        activeLayer = 1;
+    }
+}
+
 // ページ読み込み時にCSVを読み込む
 document.addEventListener('DOMContentLoaded', () => {
     loadCSV();
 
     // スクロールイベントリスナーを追加
     window.addEventListener('scroll', handleScroll);
+
+    // 背景画像の切り替えを開始
+    initBackgroundImages();
 });

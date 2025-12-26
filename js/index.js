@@ -322,30 +322,29 @@ async function loadCSV() {
         const classOrder = ['水野クラス', '井口クラス', '高尾クラス', '八尾クラス', '山下クラス'];
         const groupOrder = ['グループA', 'グループB', 'グループC'];
 
+        // すべてのグループを1つの配列にまとめる
+        const allGroups = [];
+
         classOrder.forEach(className => {
             if (classesData[className]) {
                 const sortedGroups = groupOrder.map(groupName => {
                     return classesData[className].find(g => normalizeGroupName(g.group) === groupName);
                 }).filter(g => g !== undefined);
-                classesData[className] = sortedGroups;
+                allGroups.push(...sortedGroups);
             }
         });
 
-        // 5クラスの順序をシャッフル
-        const shuffledClasses = shuffleArray(classOrder);
+        // 15グループ全体をシャッフル
+        const shuffledGroups = shuffleArray(allGroups);
 
         // グループコンテナを作成
         const groupsContainer = document.createElement('div');
         groupsContainer.className = 'groups-container';
 
-        // シャッフルされたクラス順序で15グループを表示
-        shuffledClasses.forEach(className => {
-            if (classesData[className]) {
-                classesData[className].forEach(group => {
-                    const card = createGroupCard(group);
-                    groupsContainer.appendChild(card);
-                });
-            }
+        // シャッフルされた順序で15グループを表示
+        shuffledGroups.forEach(group => {
+            const card = createGroupCard(group);
+            groupsContainer.appendChild(card);
         });
 
         container.appendChild(groupsContainer);
